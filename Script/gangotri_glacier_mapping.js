@@ -6,13 +6,13 @@
  *
  * Workflow
  *   1. Select glaciers from RGI v7.0 and build the modified boundary
- *      (Raktvarn and Chaturangi are excluded by not listing them).
+ *      (Raktvarn and Chaturangi are excluded ).
  *   2. Build a cloud-masked Sentinel-2 composite on a 10 m UTM 44N grid,
  *      clipped to the 2 km buffered boundary. Spectral bands use the median;
  *      NDSI uses a low percentile across scenes so transient snow drops out.
- *   3. Compute the FCC (B11-B8-B4), NDSI, NDWI and the red/SWIR ratio.
+ *   3. Compute the FCC (B11-B8-B4), NDSI, NDWI, and the red/SWIR ratio.
  *   4. Derive hillshade and slope from the Copernicus GLO-30 DEM.
- *   5. Extract clean ice (NDSI, red/SWIR ratio, or both), water (NDWI) and a
+ *   5. Extract clean ice (NDSI, red/SWIR ratio, or both), water (NDWI), and a
  *      debris-covered candidate layer.
  *   6. Calculate area per glacier inside the RGI boundary, then export.
  *
@@ -50,7 +50,7 @@ var CLOUD_SCORE_MIN = 0.6;        // pixel-level Cloud Score+ (cs_cdf) minimum
 // Processing
 var CRS = 'EPSG:32644';           // UTM zone 44N
 var SCALE = 10;                   // analysis resolution (m)
-var BUFFER_M = 2000;              // buffer around the modified boundary (m)
+var BUFFER_M = 2000;              
 
 // Glacier extraction
 var NDSI_THRESHOLD = 0.4;
@@ -343,7 +343,7 @@ Export.table.toDrive({
   description: EXPORT_TAG + '_areas',
   folder: EXPORT_FOLDER,
   fileFormat: 'CSV',
-  selectors: tableColumns        // drops the default system:index and .geo columns
+  selectors: tableColumns        // drops the default system: index and .geo columns
 });
 
 Export.table.toDrive({
