@@ -4,7 +4,7 @@ Maps the extent of Gangotri Glacier and its tributaries from a 2026 post-monsoon
 
 ## Workflow
 
-1. **Study area:** Select glaciers from the Randolph Glacier Inventory (RGI) v7.0 and build the modified boundary. Raktvarn and Chaturangi are excluded; Kirti, Ghanohim, Swachhand, Maindi and Sumeru are included. A Buffer of 2000 m is applied on the modified boundary.
+1. **Study area:** Select glaciers from the Randolph Glacier Inventory (RGI) v7.0 and build the modified boundary. Exclude Raktvarn and Chaturangi; include Kirti, Ghanohim, Swachhand, Maindi, and Sumeru. Apply a 2000 m buffer to the modified boundary.
 2. **Imagery:** Sentinel-2 Level-2A (harmonized), 20 September to 31 October 2026. Scenes with cloud cover above 10% are dropped, and remaining clouds are masked per pixel with Cloud Score+.
 3. **Pre-processing:** Resample B11 (20 m) to 10 m with bilinear interpolation, reproject to UTM zone 44N (EPSG:32644) and clip to the buffered boundary. Spectral bands use a median composite. NDSI uses a low percentile across scenes, so that fresh snowfall does not count as ice.
 4. **Indices:** False colour composite (B11-B8-B4), NDSI = (B3 - B11) / (B3 + B11), NDWI = (B3 - B8) / (B3 + B8) and the red/SWIR ratio B4 / B11.
